@@ -36,7 +36,6 @@ public class ModelModel {
         modelVehicle.setModelName(name);
         modelDao.createOrUpdate(modelVehicle);
         init();
-
     }
 
     public ModelFx getModel() {

@@ -32,7 +32,6 @@ public class AddMarkController {
     public void addMarkInDatabase() {
         try {
             this.markModel.saveVehicleMarkInDatabase(this.markName.getText());
-            this.markModel.init();
         } catch (ApplicationExceptions applicationExceptions) {
             applicationExceptions.printStackTrace();
         }

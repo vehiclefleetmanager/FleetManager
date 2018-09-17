@@ -11,7 +11,7 @@ public class Model implements BaseModel{
     @DatabaseField(generatedId = true)
     private Long id;
 
-    @DatabaseField(columnName = "Model name", canBeNull = false, unique = true)
+    @DatabaseField(columnName = "Model name", canBeNull = false)
     private String modelName;
 
     @ForeignCollectionField(columnName = "VEHICLE_ID")

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<Pane fx:id="intro" layoutX="60.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.161"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.domain.company.controllers.IntroController">
+
+    <ImageView fitHeight="330.0" fitWidth="351.0" layoutX="14.0" layoutY="6.0" opacity="0.09" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../../../images/draft.png"/>
+
+    </ImageView>
+    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="82.0" prefWidth="572.0">
+
+        <Label alignment="CENTER" prefHeight="50.0" prefWidth="501.0" text="Fleet Manager " textFill="#034cca">
+            <font>
+                <Font name="Pristina" size="33.0"/>
+            </font>
+            <HBox.margin>
+                <Insets bottom="35.0" left="35.0" right="35.0" top="35.0"/>
+            </HBox.margin>
+        </Label>
+
+    </HBox>
+    <VBox layoutX="356.0" layoutY="329.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity">
+
+        <Label text="NAZWA FIRMY">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label text="Autor projektu: Tomasz Miernik">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+
+    </VBox>
+    <Label layoutX="296.0" layoutY="82.0" text="PROGRAM DO OBSŁUGI FLOTY POJAZDÓW ">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+
+</Pane>

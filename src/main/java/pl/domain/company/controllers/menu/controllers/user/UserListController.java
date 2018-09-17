@@ -13,7 +13,7 @@ import pl.domain.company.database.utils.exceptions.ApplicationExceptions;
 
 import java.util.ResourceBundle;
 public class UserListController {
-    private static final String REGISTER_PATH = "/fxml/fleetmanager/menu/users/AddUsers.fxml";
+    private static final String REGISTER_PATH = "/fxml/fleetmanager/menu/user/AddUsers.fxml";
     @FXML
     private Button addUserButton;
     @FXML

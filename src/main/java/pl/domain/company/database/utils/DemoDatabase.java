@@ -23,9 +23,11 @@ public class DemoDatabase {
         /*-----------------------------------------------*/
 
         Mark markVehicle = new Mark();
+        markVehicle.setId(1L);
         markVehicle.setMarkName("Fiat");
         /*------------------------------------*/
         Model modelVehicle = new Model();
+        modelVehicle.setId(1L);
         modelVehicle.setModelName("126p");
         /*------------------------------------*/
         Vehicle vehicle = new Vehicle();
@@ -40,9 +42,11 @@ public class DemoDatabase {
 
 
         Mark markVehicle1 = new Mark();
+        markVehicle1.setId(2L);
         markVehicle1.setMarkName("FSO");
         /*------------------------------------*/
         Model modelVehicle1 = new Model();
+        modelVehicle1.setId(2L);
         modelVehicle1.setModelName("Polonez");
         /*------------------------------------*/
         Vehicle vehicle1 = new Vehicle();
@@ -56,6 +60,7 @@ public class DemoDatabase {
         vehicle1.setFirstRegDate(new Date());
 
         User user = new User();
+        user.setId(1L);
         user.setUserName("Admin");
         user.setUserSurname("Administrator");
         user.setUserEmail("admin@admin.pl");

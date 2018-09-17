@@ -11,7 +11,7 @@ public class Mark implements BaseModel{
     @DatabaseField(generatedId = true)
     private Long id;
 
-    @DatabaseField(columnName = "Mark name", canBeNull = false, unique = true)
+    @DatabaseField(columnName = "Mark name", canBeNull = false)
     private String markName;
 
     @ForeignCollectionField(columnName = "VEHICLE_ID")

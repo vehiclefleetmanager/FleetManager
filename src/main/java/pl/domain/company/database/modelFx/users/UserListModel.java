@@ -10,13 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserListModel {
-    private ObservableList<UserFx> userFxObservableList = FXCollections.observableArrayList();
-    private List<UserFx> userFxList = new ArrayList<>();
+    private ObservableList<UserFx> userFxObservableList
+            = FXCollections.observableArrayList();
+    private List<UserFx> userFxList
+            = new ArrayList<>();
 
     public void init() throws ApplicationExceptions {
         UserDao userDao = new UserDao();
         List<User> users = userDao.queryForAll(User.class);
-        this.userFxList.clear();
+        users.clear();
         users.forEach(user -> {
             this.userFxList.add(ConvertUser.convertToUserFx(user));
         });

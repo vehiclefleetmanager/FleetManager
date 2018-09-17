@@ -8,6 +8,7 @@ import pl.domain.company.database.utils.exceptions.ApplicationExceptions;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class ModelListModel {
     private ObservableList<ModelFx> modelFXObservableList =
             FXCollections.observableArrayList();

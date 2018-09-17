@@ -34,7 +34,6 @@ public class AddModelController {
     public void addModelInDatabase() {
         try {
             this.modelModel.saveVehicleModelInDatabase(modelName.getText());
-            this.modelModel.init();
         } catch (ApplicationExceptions applicationExceptions) {
             applicationExceptions.printStackTrace();
         }

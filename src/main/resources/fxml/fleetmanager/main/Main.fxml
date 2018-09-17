@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.Pane?>
+<BorderPane fx:id="main" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0"
+            prefWidth="1400.0" xmlns="http://javafx.com/javafx/8.0.161"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.domain.company.controllers.main.MainController">
+    <left>
+        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+              minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+            <fx:include fx:id="leftMenu" source="LeftMenu.fxml" />
+            <padding>
+                <Insets left="35.0" />
+            </padding>
+        </VBox>
+    </left>
+    <center>
+        <Pane>
+            <fx:include fx:id="intro" source="Intro.fxml"/>
+        </Pane>
+    </center>
+</BorderPane>

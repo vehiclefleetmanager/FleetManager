@@ -178,10 +178,12 @@ public class AddVehicleController {
 
     public void addMark() {
         showWindow(ADD_MARK, MARK_TITLE);
+        closeWindow(addMarkButton);
     }
 
     public void addModel() {
         showWindow(ADD_MODEL, MODEL_TITLE);
+        closeWindow(addModelButton);
     }
 
 
