@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pl.domain.company.controllers.menu.controllers.Controllable;
 import pl.domain.company.database.modelFx.vehicles.VehicleFx;
 import pl.domain.company.database.modelFx.vehicles.VehiclesListModel;
 import pl.domain.company.database.modelFx.vehicles.mark.MarkFx;
@@ -18,9 +19,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
-public class VehicleListController {
+public class VehicleListController implements Controllable {
     private static final String ADD_VEHICLE = "/fxml/fleetmanager/menu/vehicle/AddVehicle.fxml";
-    private static String WINDOW_TITLE = null;
+    private static String WINDOW_TITLE = "Dodawanie pojazdu";
     @FXML
     private Button addVehicle;
     @FXML
@@ -48,6 +49,8 @@ public class VehicleListController {
 
     private VehiclesListModel listVehiclesModel;
 
+    @FXML
+    @Override
     public void initialize() {
         this.listVehiclesModel = new VehiclesListModel();
         try {
@@ -65,13 +68,14 @@ public class VehicleListController {
         this.typeVehicle.setCellValueFactory(cellData -> cellData.getValue().vehicleTypeProperty());
     }
 
+
     @FXML
     public void addVehicleWindow() {
-        WINDOW_TITLE = "Dodawanie pojazdu";
-        showWindow(ADD_VEHICLE);
+        showWindow(ADD_VEHICLE, WINDOW_TITLE);
     }
 
-    private void showWindow(String path) {
+    @Override
+    public void showWindow(String path, String title) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(path));
         ResourceBundle bundle = ResourceBundle.getBundle("description.description");
         loader.setResources(bundle);
@@ -82,11 +86,17 @@ public class VehicleListController {
             e.printStackTrace();
         }
         Stage stage = new Stage();
+        assert parent != null;
         Scene scene = new Scene(parent);
         stage.setScene(scene);
-        stage.setTitle(WINDOW_TITLE);
+        stage.setTitle(title);
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    @Override
+    public void closeWindow(Button button) {
+
     }
 }

@@ -14,15 +14,12 @@ public class LogWindowController {
     private Button cancelButton;
     @FXML
     private PasswordField passwordField;
-    @FXML
-    private Button registerButton;
+
     @FXML
     private TextField loginTextField;
     @FXML
     private Button logButton;
-    private Stage registerStage = new Stage();
-    private Parent registerParent;
-    private Scene registerScene;
+
 
 
     @FXML
@@ -55,14 +52,9 @@ public class LogWindowController {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-        Stage stage = (Stage)logButton.getScene().getWindow();
-        stage.close();
+        cancel();
 
 
-    }
-
-    public Stage getRegisterStage() {
-        return registerStage;
     }
 
     public void cancel() {

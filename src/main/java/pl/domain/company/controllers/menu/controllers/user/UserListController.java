@@ -6,14 +6,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pl.domain.company.controllers.menu.controllers.Controllable;
 import pl.domain.company.database.modelFx.users.UserFx;
 import pl.domain.company.database.modelFx.users.UserListModel;
 import pl.domain.company.database.utils.exceptions.ApplicationExceptions;
 
 import java.util.ResourceBundle;
-public class UserListController {
+public class UserListController implements Controllable {
     private static final String REGISTER_PATH = "/fxml/fleetmanager/menu/user/AddUsers.fxml";
+    private static final String TITLE_WINDOW = "Rejestracja";
+
     @FXML
     private Button addUserButton;
     @FXML
@@ -33,6 +37,8 @@ public class UserListController {
 
     private UserListModel userListModel;
 
+    @FXML
+
     public void initialize(){
         this.userListModel = new UserListModel();
         try {
@@ -49,9 +55,33 @@ public class UserListController {
     }
 
 
+    @Override
+    public void showWindow(String path, String title) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(path));
+        ResourceBundle bundle = ResourceBundle.getBundle("description.description");
+        loader.setResources(bundle);
+        Parent parent = null;
+        try {
+            parent = loader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assert parent != null;
+        Scene scene = new Scene(parent);
+        Stage registerStage = new Stage();
+        registerStage.setScene(scene);
+        registerStage.setTitle(title);
+        registerStage.initModality(Modality.APPLICATION_MODAL);
+        registerStage.show();
+    }
+
+    @Override
+    public void closeWindow(Button button) {
+
+    }
 
     public void addUser() {
-        openRegisterWindow();
+        openAddUserWindow();
     }
 
     public void editUser() {
@@ -63,22 +93,7 @@ public class UserListController {
     }
 
 
-    @FXML
-    public void openRegisterWindow() {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(REGISTER_PATH));
-        ResourceBundle bundle = ResourceBundle.getBundle("description.description");
-        loader.setResources(bundle);
-        Parent parent = null;
-        try {
-            parent = loader.load();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(parent);
-        Stage registerStage = new Stage();
-        registerStage.setScene(scene);
-        registerStage.setTitle("Panel rejestracji");
-        registerStage.show();
-        registerStage.setAlwaysOnTop(true);
+    private void openAddUserWindow() {
+        showWindow(REGISTER_PATH,TITLE_WINDOW);
     }
 }

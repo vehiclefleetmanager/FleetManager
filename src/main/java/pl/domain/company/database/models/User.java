@@ -9,19 +9,19 @@ public class User implements BaseModel{
     @DatabaseField(generatedId = true)
     private Long id;
 
-    @DatabaseField(columnName = "Name", canBeNull = false)
+    @DatabaseField(columnName = "Name")
     private String userName;
 
-    @DatabaseField(columnName = "Surname", canBeNull = false)
+    @DatabaseField(columnName = "Surname")
     private String userSurname;
 
-    @DatabaseField(columnName = "E-mail", canBeNull = false)
+    @DatabaseField(columnName = "E-mail")
     private String userEmail;
 
-    @DatabaseField(columnName = "Password", canBeNull = false)
+    @DatabaseField(columnName = "Password")
     private String userPassword;
 
-    @DatabaseField(columnName = "Permission", canBeNull = false)
+    @DatabaseField(columnName = "Permission")
     private String userPermission;
 
     public Long getId() {

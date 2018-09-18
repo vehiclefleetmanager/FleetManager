@@ -31,6 +31,7 @@ public class DemoDatabase {
         modelVehicle.setModelName("126p");
         /*------------------------------------*/
         Vehicle vehicle = new Vehicle();
+        vehicle.setId(1L);
         vehicle.setRegisterNumber("YY 11111");
         vehicle.setVehicleMark(markVehicle);
         vehicle.setVehicleModel(modelVehicle);
@@ -50,6 +51,7 @@ public class DemoDatabase {
         modelVehicle1.setModelName("Polonez");
         /*------------------------------------*/
         Vehicle vehicle1 = new Vehicle();
+        vehicle1.setId(2L);
         vehicle1.setRegisterNumber("XX 11223");
         vehicle1.setVehicleMark(markVehicle1);
         vehicle1.setVehicleModel(modelVehicle1);

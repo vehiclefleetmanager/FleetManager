@@ -60,7 +60,6 @@ public class Vehicle implements BaseModel{
     private int vehicleWeight;
     @DatabaseField(columnName = "Vehicle total weight")
     private int totalWeight;
-
     @DatabaseField(columnName = "Weight of the load")
     private int loadWeight;
 

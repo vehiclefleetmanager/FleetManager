@@ -1,18 +1,9 @@
 package pl.domain.company.database.modelFx.vehicles;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import pl.domain.company.database.dao.MarkDao;
-import pl.domain.company.database.dao.ModelDao;
 import pl.domain.company.database.dao.VehicleDao;
-import pl.domain.company.database.modelFx.vehicles.mark.MarkFx;
-import pl.domain.company.database.modelFx.vehicles.model.ModelFx;
-import pl.domain.company.database.models.Mark;
-import pl.domain.company.database.models.Model;
 import pl.domain.company.database.models.Vehicle;
-import pl.domain.company.database.utils.converters.ConvertMark;
-import pl.domain.company.database.utils.converters.ConvertModel;
 import pl.domain.company.database.utils.converters.ConvertVehicle;
 import pl.domain.company.database.utils.exceptions.ApplicationExceptions;
 
@@ -22,34 +13,31 @@ import java.util.List;
 public class VehiclesListModel {
     private ObservableList<VehicleFx> vehicleFxObservableList
             = FXCollections.observableArrayList();
-    private ObservableList<MarkFx> markFxObservableList
+    /*private ObservableList<MarkFx> markFxObservableList
             = FXCollections.observableArrayList();
     private ObservableList<ModelFx> modelFxObservableList
-            = FXCollections.observableArrayList();
+            = FXCollections.observableArrayList();*/
 
-    private ObjectProperty<MarkFx> markFxObjectProperty
+    /*private ObjectProperty<MarkFx> markFxObjectProperty
             = new SimpleObjectProperty<>();
     private ObjectProperty<ModelFx> modelFxObjectProperty
-            = new SimpleObjectProperty<>();
+            = new SimpleObjectProperty<>();*/
 
 
     private List<VehicleFx> vehicleFxList = new ArrayList<>();
-
 
 
     public void init() throws ApplicationExceptions {
         VehicleDao vehicleDao = new VehicleDao();
         List<Vehicle> vehicles = vehicleDao.queryForAll(Vehicle.class);
         vehicleFxList.clear();
-        vehicles.forEach(vehicle -> {
-            this.vehicleFxList.add(ConvertVehicle.convertToVehicleFx(vehicle));
-        });
+        vehicles.forEach(vehicle -> this.vehicleFxList.add(ConvertVehicle.convertToVehicleFx(vehicle)));
         this.vehicleFxObservableList.setAll(vehicleFxList);
-        initMarks();
-        initModels();
+        //initMarks();
+        //initModels();
     }
 
-    private void initModels() throws ApplicationExceptions {
+    /*private void initModels() throws ApplicationExceptions {
         ModelDao modelDao = new ModelDao();
         List<Model> modelList = modelDao.queryForAll(Model.class);
         this.modelFxObservableList.clear();
@@ -57,9 +45,9 @@ public class VehiclesListModel {
             ModelFx modelFx = ConvertModel.convertToModelFx(model);
             this.modelFxObservableList.add(modelFx);
         });
-    }
+    }*/
 
-    private void initMarks() throws ApplicationExceptions {
+    /*private void initMarks() throws ApplicationExceptions {
         MarkDao markDao = new MarkDao();
         List<Mark> markList = markDao.queryForAll(Mark.class);
         this.markFxObservableList.clear();
@@ -67,7 +55,7 @@ public class VehiclesListModel {
             MarkFx markFx = ConvertMark.convertToMarkFx(mark);
             this.markFxObservableList.add(markFx);
         });
-    }
+    }*/
 
     public ObservableList<VehicleFx> getVehicleFxObservableList() {
         return vehicleFxObservableList;
@@ -77,7 +65,7 @@ public class VehiclesListModel {
         this.vehicleFxObservableList = vehicleFxObservableList;
     }
 
-    public ObservableList<MarkFx> getMarkFxObservableList() {
+   /* public ObservableList<MarkFx> getMarkFxObservableList() {
         return markFxObservableList;
     }
 
@@ -115,7 +103,7 @@ public class VehiclesListModel {
 
     public void setModelFxObjectProperty(ModelFx modelFxObjectProperty) {
         this.modelFxObjectProperty.set(modelFxObjectProperty);
-    }
+    }*/
 
     public List<VehicleFx> getVehicleFxList() {
         return vehicleFxList;

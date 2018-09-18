@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pl.domain.company.controllers.menu.controllers.Controllable;
 import pl.domain.company.database.modelFx.vehicles.VehicleModel;
 import pl.domain.company.database.modelFx.vehicles.mark.MarkFx;
 import pl.domain.company.database.modelFx.vehicles.mark.MarkModel;
@@ -20,7 +21,7 @@ import pl.domain.company.database.utils.validations.Validation;
 
 import java.io.IOException;
 
-public class AddVehicleController {
+public class AddVehicleController implements Controllable {
     private static final String ADD_MARK = "/fxml/fleetmanager/menu/vehicle/AddMark.fxml";
     private static final String ADD_MODEL = "/fxml/fleetmanager/menu/vehicle/AddModel.fxml";
     private static final String MARK_TITLE = "Dodawanie marki pojazdu";
@@ -152,6 +153,7 @@ public class AddVehicleController {
     private MarkModel markModel;
 
     @FXML
+    @Override
     public void initialize() {
         modelModel = new ModelModel();
         markModel = new MarkModel();
@@ -261,10 +263,10 @@ public class AddVehicleController {
     }
 
     public void counterWeight() {
-        Integer vWeight = Integer.parseInt(this.vehicleWeightSize.getText());
-        Integer mWeight = Integer.parseInt(this.maxWeightSize.getText());
-        Integer lWeight = mWeight - vWeight;
-        validationWeightVehicle(vWeight, mWeight, lWeight);
+        Integer vehicleWeight = Integer.parseInt(this.vehicleWeightSize.getText());
+        Integer maxValueWeight = Integer.parseInt(this.maxWeightSize.getText());
+        Integer loadWeight = maxValueWeight - vehicleWeight;
+        validationWeightVehicle(vehicleWeight, maxValueWeight, loadWeight);
 
     }
 
@@ -272,7 +274,9 @@ public class AddVehicleController {
         closeWindow(cancel);
     }
 
-    private void showWindow(String path, String title) {
+
+    @Override
+    public void showWindow(String path, String title) {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(path));
         Parent parent = null;
         try {
@@ -281,6 +285,7 @@ public class AddVehicleController {
             e.printStackTrace();
         }
         Stage stage = new Stage();
+        assert parent != null;
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.setTitle(title);
@@ -290,19 +295,19 @@ public class AddVehicleController {
         stage.showAndWait();
     }
 
-    private void validationWeightVehicle(Integer vWeight, Integer mWeight, Integer lWeight) {
-        if (mWeight < vWeight) {
+    private void validationWeightVehicle(Integer vehicleWeight, Integer maxValueWeight, Integer loadWeight) {
+        if (maxValueWeight < vehicleWeight) {
             this.maxWeightSize.setStyle(warningBorderColor);
             this.vehicleWeightSize.setStyle(warningBorderColor);
             validationWeightValue(WEIGHT_INFO);
-        } else if (this.typeVehicle.valueProperty().get().equals("Dostawczy") && ((mWeight > 3500) || (vWeight > 3500))) {
+        } else if (this.typeVehicle.valueProperty().get().equals("Dostawczy") && ((maxValueWeight > 3500) || (vehicleWeight > 3500))) {
             this.maxWeightSize.setStyle(warningBorderColor);
             this.vehicleWeightSize.setStyle(warningBorderColor);
             validationWeightValue(BUS_WEIGHT_WARNING);
         } else {
             this.maxWeightSize.setStyle(normalBorderColor);
             this.vehicleWeightSize.setStyle(normalBorderColor);
-            this.loadWeightSize.setText(String.valueOf(lWeight));
+            this.loadWeightSize.setText(String.valueOf(loadWeight));
         }
     }
 
@@ -336,8 +341,8 @@ public class AddVehicleController {
                 .or(this.maxWeightSize.textProperty().isEmpty()));
         this.loadWeightSize.disableProperty();
     }
-
-    private void closeWindow(Button button) {
+    @Override
+    public void closeWindow(Button button) {
         Stage stage = (Stage) button.getScene().getWindow();
         stage.close();
     }
