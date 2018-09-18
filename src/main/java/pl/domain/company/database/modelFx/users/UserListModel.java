@@ -18,7 +18,7 @@ public class UserListModel {
     public void init() throws ApplicationExceptions {
         UserDao userDao = new UserDao();
         List<User> users = userDao.queryForAll(User.class);
-        users.clear();
+        userFxList.clear();
         users.forEach(user -> {
             this.userFxList.add(ConvertUser.convertToUserFx(user));
         });

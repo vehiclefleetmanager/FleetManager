@@ -20,16 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VehiclesListModel {
-    private ObservableList<VehicleFx> vehicleFxObservableList = FXCollections.observableArrayList();
-    private ObservableList<MarkFx> markFxObservableList =
-            FXCollections.observableArrayList();
-    private ObservableList<ModelFx> modelFxObservableList =
-            FXCollections.observableArrayList();
+    private ObservableList<VehicleFx> vehicleFxObservableList
+            = FXCollections.observableArrayList();
+    private ObservableList<MarkFx> markFxObservableList
+            = FXCollections.observableArrayList();
+    private ObservableList<ModelFx> modelFxObservableList
+            = FXCollections.observableArrayList();
 
-    private ObjectProperty<MarkFx> markFxObjectProperty =
-            new SimpleObjectProperty<>();
-    private ObjectProperty<ModelFx> modelFxObjectProperty =
-            new SimpleObjectProperty<>();
+    private ObjectProperty<MarkFx> markFxObjectProperty
+            = new SimpleObjectProperty<>();
+    private ObjectProperty<ModelFx> modelFxObjectProperty
+            = new SimpleObjectProperty<>();
 
 
     private List<VehicleFx> vehicleFxList = new ArrayList<>();

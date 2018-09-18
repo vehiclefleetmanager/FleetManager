@@ -1,4 +1,5 @@
 package pl.domain.company.controllers.menu.controllers.vehicle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import pl.domain.company.database.utils.exceptions.ApplicationExceptions;
 import pl.domain.company.database.utils.validations.Validation;
 
 import java.io.IOException;
+
 public class AddVehicleController {
     private static final String ADD_MARK = "/fxml/fleetmanager/menu/vehicle/AddMark.fxml";
     private static final String ADD_MODEL = "/fxml/fleetmanager/menu/vehicle/AddModel.fxml";
@@ -29,7 +31,9 @@ public class AddVehicleController {
     private static final String warningBorderColor = "-fx-border-color: red;";
     private static final String normalBorderColor = "-fx-border-color: transparent;";
 
-    /** buttons */
+    /**
+     * buttons
+     */
     @FXML
     private Button addMarkButton;
     @FXML
@@ -41,7 +45,9 @@ public class AddVehicleController {
     @FXML
     private Button cancel;
 
-    /** checkboxes */
+    /**
+     * checkboxes
+     */
     @FXML
     private CheckBox basicBattery;
     @FXML
@@ -53,7 +59,9 @@ public class AddVehicleController {
     @FXML
     private CheckBox allYearTire;
 
-    /** combo boxes*/
+    /**
+     * combo boxes
+     */
     @FXML
     private ComboBox<String> typeVehicle;
     @FXML
@@ -61,7 +69,9 @@ public class AddVehicleController {
     @FXML
     private ComboBox<ModelFx> modelComboBox;
 
-    /** data pickers*/
+    /**
+     * data pickers
+     */
     @FXML
     private DatePicker firstRegisterDataPicker;
     @FXML
@@ -71,13 +81,17 @@ public class AddVehicleController {
     @FXML
     private DatePicker lastServiceDataPicker;
 
-    /** h box*/
+    /**
+     * h box
+     */
     @FXML
     private HBox wheelsContainer;
     @FXML
     private HBox groupTankContainer;
 
-    /** text fields*/
+    /**
+     * text fields
+     */
     @FXML
     private TextField basicBatteryValue;
     @FXML
@@ -111,7 +125,9 @@ public class AddVehicleController {
     @FXML
     private TextField counterStateTextField;
 
-    /** radio buttons*/
+    /**
+     * radio buttons
+     */
     @FXML
     private RadioButton onRadioButton;
     @FXML
@@ -123,7 +139,9 @@ public class AddVehicleController {
     @FXML
     private RadioButton tenWheelsRadioButton;
 
-    /** toggle groups*/
+    /**
+     * toggle groups
+     */
     @FXML
     private ToggleGroup wheelsSize;
     @FXML
@@ -138,11 +156,11 @@ public class AddVehicleController {
         modelModel = new ModelModel();
         markModel = new MarkModel();
         this.vehicleModel = new VehicleModel();
-        try{
+        try {
             vehicleModel.init();
             modelModel.init();
             markModel.init();
-        }catch (ApplicationExceptions ae){
+        } catch (ApplicationExceptions ae) {
             ae.printStackTrace();
         }
         this.modelComboBox.setItems(this.vehicleModel.getModelFxObservableList());
@@ -178,32 +196,29 @@ public class AddVehicleController {
 
     public void addMark() {
         showWindow(ADD_MARK, MARK_TITLE);
-        closeWindow(addMarkButton);
     }
 
     public void addModel() {
         showWindow(ADD_MODEL, MODEL_TITLE);
-        closeWindow(addModelButton);
     }
 
 
     public void saveVehicleInDatabase() {
-        if(isCheckFieldsBeforeSave()){
+        if (isCheckFieldsBeforeSave()) {
             try {
                 this.vehicleModel.saveVehicleInDataBase();
-                //clearFields();
                 closeWindow(saveVehicle);
                 Validation.showInformation("Dodano pojazd do bazy");
-            }catch (ApplicationExceptions ae){
+            } catch (ApplicationExceptions ae) {
                 ae.getMessage();
             }
-        }else {
+        } else {
             Validation.showInformation("Pola nie mogą być puste");
         }
     }
 
     private boolean isCheckFieldsBeforeSave() {
-        if(markComboBox.itemsProperty().isNotNull().isValid()
+        if (markComboBox.itemsProperty().isNotNull().isValid()
                 || modelComboBox.itemsProperty().isNotNull().isValid()
                 || vinTextField.textProperty().getValue().isEmpty()
                 || capacityTextField.textProperty().getValue().isEmpty()
@@ -214,7 +229,7 @@ public class AddVehicleController {
                 || typeVehicle.itemsProperty().isNotNull().isValid()
                 || registrationDataPicker.valueProperty().isNotNull().isValid()
                 || liabilityDataPicker.valueProperty().isNotNull().isValid()
-                || lastServiceDataPicker.valueProperty().isNotNull().isValid()){
+                || lastServiceDataPicker.valueProperty().isNotNull().isValid()) {
             markComboBox.setStyle(warningBorderColor);
             modelComboBox.setStyle(warningBorderColor);
             vinTextField.setStyle(warningBorderColor);
@@ -227,8 +242,7 @@ public class AddVehicleController {
             registrationDataPicker.setStyle(warningBorderColor);
             liabilityDataPicker.setStyle(warningBorderColor);
             lastServiceDataPicker.setStyle(warningBorderColor);
-        }
-        else{
+        } else {
             markComboBox.setStyle(normalBorderColor);
             modelComboBox.setStyle(normalBorderColor);
             vinTextField.setStyle(normalBorderColor);
@@ -277,15 +291,15 @@ public class AddVehicleController {
     }
 
     private void validationWeightVehicle(Integer vWeight, Integer mWeight, Integer lWeight) {
-        if(mWeight < vWeight){
+        if (mWeight < vWeight) {
             this.maxWeightSize.setStyle(warningBorderColor);
             this.vehicleWeightSize.setStyle(warningBorderColor);
             validationWeightValue(WEIGHT_INFO);
-        }else if(this.typeVehicle.valueProperty().get().equals("Dostawczy") && ((mWeight > 3500) || (vWeight > 3500))){
+        } else if (this.typeVehicle.valueProperty().get().equals("Dostawczy") && ((mWeight > 3500) || (vWeight > 3500))) {
             this.maxWeightSize.setStyle(warningBorderColor);
             this.vehicleWeightSize.setStyle(warningBorderColor);
             validationWeightValue(BUS_WEIGHT_WARNING);
-        }else {
+        } else {
             this.maxWeightSize.setStyle(normalBorderColor);
             this.vehicleWeightSize.setStyle(normalBorderColor);
             this.loadWeightSize.setText(String.valueOf(lWeight));
@@ -299,15 +313,10 @@ public class AddVehicleController {
     private void addListsValue() {
 
         ObservableList<String> typeList = FXCollections.observableArrayList(
-                "Osobowy","Dostawczy","Ciężarowy","Specjalny","Maszyna","Inne");
+                "Osobowy", "Dostawczy", "Ciężarowy", "Specjalny", "Maszyna", "Inne");
         this.typeVehicle.setItems(typeList);
-        /*ObservableList<String> markList = FXCollections.observableArrayList(
-                "Man","Ford","Skoda","Dacia","Voogle");
-        this.markComboBox.setItems(markList);
-        ObservableList<String> modelList = FXCollections.observableArrayList(
-                "TGM", "Transit", "Superb","Dokker","Xyz");
-        this.modelComboBox.setItems(modelList);*/
     }
+
     private void disabledField() {
         this.summaryTireSize.disableProperty().bind(this.summerTire.selectedProperty().not());
         this.winterTireSize.disableProperty().bind(this.winterTire.selectedProperty().not());
@@ -328,9 +337,25 @@ public class AddVehicleController {
         this.loadWeightSize.disableProperty();
     }
 
-    private void closeWindow(Button button){
+    private void closeWindow(Button button) {
         Stage stage = (Stage) button.getScene().getWindow();
         stage.close();
     }
 
+
+    public void onLoadNewMarks() {
+        try {
+            this.markModel.init();
+        } catch (ApplicationExceptions applicationExceptions) {
+            applicationExceptions.printStackTrace();
+        }
+    }
+
+    public void onLoadNewModels() {
+        try {
+            this.modelModel.init();
+        } catch (ApplicationExceptions applicationExceptions) {
+            applicationExceptions.printStackTrace();
+        }
+    }
 }

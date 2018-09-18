@@ -12,7 +12,7 @@
    <children>
       <HBox alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="25.0" VBox.vgrow="NEVER">
          <children>
-            <Button fx:id="addVehicle" mnemonicParsing="false" onAction="#addVehicle" text="Dodaj pojazd" />
+            <Button fx:id="addVehicle" mnemonicParsing="false" onAction="#addVehicleWindow" text="Dodaj pojazd" />
             <Button fx:id="editVehicle" mnemonicParsing="false" text="Edytuj pojazd" />
             <Button fx:id="deleteVehicle" mnemonicParsing="false" text="Usuń pojazd" />
             <ComboBox prefWidth="150.0" />

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.domain.company.controllers.menu.controllers.vehicle.AddVehicleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.domain.company.controllers.menu.controllers.vehicle.AddVehicleController">
    <children>
       <GridPane hgap="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="3.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <columnConstraints>
@@ -43,13 +43,13 @@
          </rowConstraints>
          <children>
             <Label alignment="TOP_RIGHT" contentDisplay="TOP" text="%mark.label" textAlignment="CENTER" />
-            <ComboBox fx:id="markComboBox" maxWidth="174.4"  GridPane.columnIndex="1">
+            <ComboBox fx:id="markComboBox" maxWidth="174.4" onMouseClicked="#onLoadNewMarks" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                </GridPane.margin>
             </ComboBox>
             <Label text="%model.label" GridPane.rowIndex="1" />
-            <ComboBox fx:id="modelComboBox" maxWidth="174.4"  GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ComboBox fx:id="modelComboBox" maxWidth="174.4" onMouseClicked="#onLoadNewModels" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                </GridPane.margin>

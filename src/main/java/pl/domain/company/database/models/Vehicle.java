@@ -6,19 +6,19 @@ import java.util.Date;
 
 @DatabaseTable(tableName = "VEHICLES")
 public class Vehicle implements BaseModel{
-    public static final String MARK_ID = "MARK_ID";
-    public static final String MODEL_ID = "MODEL_ID";
+    private static final String MARK_ID = "MARK_ID";
+    private static final String MODEL_ID = "MODEL_ID";
     public Vehicle() {
     }
     @DatabaseField(generatedId = true)
     private Long id;
-    @DatabaseField(columnName = "Reg_Number", unique = true)
+    @DatabaseField(columnName = "Reg_Number")
     private String registerNumber;
     @DatabaseField(columnName = MARK_ID, foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
     private Mark vehicleMark;
     @DatabaseField(columnName = MODEL_ID,foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
     private Model vehicleModel;
-    @DatabaseField(columnName = "VIN", unique = true)
+    @DatabaseField(columnName = "VIN")
     private String vehicleVin;
     @DatabaseField(columnName = "Engine capacity")
     private int engineCapacity;

@@ -66,7 +66,7 @@ public class VehicleListController {
     }
 
     @FXML
-    public void addVehicle() {
+    public void addVehicleWindow() {
         WINDOW_TITLE = "Dodawanie pojazdu";
         showWindow(ADD_VEHICLE);
     }
